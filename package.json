@@ -2,7 +2,7 @@
   "scripts": {
     "precommit": "rubocop"
   },
-  "name": "template",
+  "name": "hebe_market",
   "private": true,
   "dependencies": {},
   "devDependencies": {

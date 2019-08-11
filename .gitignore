@@ -34,3 +34,6 @@ coverage
 
 # Redis dump file
 dump.rdb
+
+# Ignore application configuration
+/config/application.yml
