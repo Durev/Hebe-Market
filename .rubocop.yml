@@ -15,6 +15,9 @@ Rails:
   Enabled: True
 
 Style/FrozenStringLiteralComment:
+  Enabled: true
+
+Performance/UnfreezeString:
   Enabled: false
 
 Metrics/BlockLength:
