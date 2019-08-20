@@ -2,10 +2,11 @@
 
 class Basket < ApplicationRecord
   BASKET_TYPES = [
-    DEFAULT = "default",
-    CUSTOM = "custom"
+    DEFAULT_TYPE = "default",
+    CUSTOM_TYPE = "custom"
   ].freeze
 
   validates :basket_type, :price, presence: true
-  validates :price, numericality: true
+  validates :basket_type, inclusion: { in: BASKET_TYPES }
+  validates :price, numericality: { greater_than: 0 }
 end
