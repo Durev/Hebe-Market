@@ -22,6 +22,6 @@ class Subscription < ApplicationRecord
   def end_date_cannot_be_in_the_past
     return unless end_date.present? && end_date < Time.zone.today
 
-    errors.add(:end_date, "can't be in the past")
+    errors.add(:end_date, "cannot be in the past")
   end
 end

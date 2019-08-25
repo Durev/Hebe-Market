@@ -56,7 +56,7 @@ RSpec.describe Subscription, type: :model do
   end
 
   describe "@end_date" do
-    it "is after @created_at" do
+    it "is in the future" do
       subject.end_date = 2.days.ago
       expect(subject).to have(1).error_on(:end_date)
 
