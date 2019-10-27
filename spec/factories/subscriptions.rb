@@ -3,9 +3,8 @@
 FactoryBot.define do
   factory :subscription do
     user
-    basket
 
     frequency { Subscription::FREQUENCIES.sample }
-    quantity { rand(1..100) }
+    start_date { 1.week.from_now }
   end
 end

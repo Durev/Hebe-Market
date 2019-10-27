@@ -9,19 +9,43 @@ class Subscription < ApplicationRecord
   ].freeze
 
   belongs_to :user, optional: false
-  belongs_to :basket, optional: false
 
-  validates :quantity, :frequency, presence: true
+  validates :frequency, :start_date, presence: true
   validates :frequency, inclusion: { in: FREQUENCIES }
-  validates :quantity, numericality: { greater_than: 0 }
 
-  validate :end_date_cannot_be_in_the_past
+  validate :end_date_cannot_be_before_start_date
+
+  before_validation :enforce_start_date
 
   private
 
-  def end_date_cannot_be_in_the_past
-    return unless end_date.present? && end_date < Time.zone.today
+  def end_date_cannot_be_before_start_date
+    return unless end_date.present? && start_date.present?
+    return unless end_date < start_date
 
-    errors.add(:end_date, "cannot be in the past")
+    errors.add(:end_date, "cannot be before start_date")
+  end
+
+  def enforce_start_date
+    return if start_date.present?
+
+    self.start_date = Time.current
   end
 end
+
+# == Schema Information
+#
+# Table name: subscriptions
+#
+#  id         :bigint           not null, primary key
+#  user_id    :bigint           not null
+#  frequency  :string           not null
+#  start_date :date             not null
+#  end_date   :date
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+# Indexes
+#
+#  index_subscriptions_on_user_id  (user_id)
+#

@@ -25,13 +25,11 @@ ActiveRecord::Schema.define(version: 2019_08_20_203850) do
 
   create_table "subscriptions", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "basket_id", null: false
-    t.integer "quantity", default: 1, null: false
     t.string "frequency", null: false
+    t.date "start_date", null: false
     t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["basket_id"], name: "index_subscriptions_on_basket_id"
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
@@ -52,6 +50,5 @@ ActiveRecord::Schema.define(version: 2019_08_20_203850) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "subscriptions", "baskets"
   add_foreign_key "subscriptions", "users"
 end

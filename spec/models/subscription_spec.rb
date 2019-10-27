@@ -17,34 +17,6 @@ RSpec.describe Subscription, type: :model do
     end
   end
 
-  describe "@basket" do
-    it "is required" do
-      subject.basket = nil
-      expect(subject).to have(1).error_on(:basket)
-
-      subject.basket = FactoryBot.build(:basket)
-      expect(subject).to have(:no).error_on(:basket)
-    end
-  end
-
-  describe "@quantity" do
-    it "is required" do
-      subject.quantity = nil
-      expect(subject).to have_at_least(1).error_on(:quantity)
-
-      subject.quantity = 2
-      expect(subject).to have(:no).error_on(:quantity)
-    end
-
-    it "is a positive integer" do
-      subject.quantity = 0
-      expect(subject).to have(1).error_on(:quantity)
-
-      subject.quantity = 2
-      expect(subject).to have(:no).error_on(:quantity)
-    end
-  end
-
   describe "@frequency" do
     it "is included in the valid frequencies" do
       subject.frequency = "daily"
@@ -56,7 +28,7 @@ RSpec.describe Subscription, type: :model do
   end
 
   describe "@end_date" do
-    it "is in the future" do
+    it "is after start_date" do
       subject.end_date = 2.days.ago
       expect(subject).to have(1).error_on(:end_date)
 
