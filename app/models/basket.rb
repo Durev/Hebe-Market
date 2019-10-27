@@ -10,3 +10,15 @@ class Basket < ApplicationRecord
   validates :basket_type, inclusion: { in: BASKET_TYPES }
   validates :price, numericality: { greater_than: 0 }
 end
+
+# == Schema Information
+#
+# Table name: baskets
+#
+#  id          :bigint           not null, primary key
+#  basket_type :string           default("default"), not null
+#  content     :text
+#  price       :float            not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
