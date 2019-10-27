@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_20_203850) do
+ActiveRecord::Schema.define(version: 2019_10_27_175856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "basket_subscriptions", force: :cascade do |t|
+    t.bigint "basket_id", null: false
+    t.bigint "subscription_id", null: false
+    t.integer "quantity", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["basket_id"], name: "index_basket_subscriptions_on_basket_id"
+    t.index ["subscription_id"], name: "index_basket_subscriptions_on_subscription_id"
+  end
 
   create_table "baskets", force: :cascade do |t|
     t.string "basket_type", default: "default", null: false
@@ -50,5 +60,7 @@ ActiveRecord::Schema.define(version: 2019_08_20_203850) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "basket_subscriptions", "baskets"
+  add_foreign_key "basket_subscriptions", "subscriptions"
   add_foreign_key "subscriptions", "users"
 end
