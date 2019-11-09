@@ -3,8 +3,7 @@
 class BasketSubscription < ApplicationRecord
   belongs_to :basket, optional: false
   belongs_to :subscription, optional: false
-  validates :quantity, presence: true
-  validates :quantity, numericality: { greater_than: 0 }
+  validates :quantity, presence: true, numericality: { greater_than: 0 }
 end
 
 # == Schema Information

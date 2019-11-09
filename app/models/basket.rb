@@ -6,6 +6,8 @@ class Basket < ApplicationRecord
     CUSTOM_TYPE = "custom"
   ].freeze
 
+  has_many :subscriptions, through: :basket_subscriptions
+
   validates :basket_type, :price, presence: true
   validates :basket_type, inclusion: { in: BASKET_TYPES }
   validates :price, numericality: { greater_than: 0 }
