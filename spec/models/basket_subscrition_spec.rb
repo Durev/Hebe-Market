@@ -3,6 +3,9 @@
 RSpec.describe BasketSubscription, type: :model do
   subject { FactoryBot.build(:basket_subscription) }
 
+  it { is_expected.to belong_to(:basket) }
+  it { is_expected.to belong_to(:subscription) }
+
   it "has a valid factory" do
     expect(subject).to be_valid
   end
