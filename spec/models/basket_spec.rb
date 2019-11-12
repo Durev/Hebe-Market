@@ -16,7 +16,7 @@ RSpec.describe Basket, type: :model do
       expect(subject).to have(:no).error_on(:basket_type)
     end
 
-    it "is a valid type" do
+    it "is included in the valid types" do
       subject.basket_type = "random"
       expect(subject).to have(1).error_on(:basket_type)
 
