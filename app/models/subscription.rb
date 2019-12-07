@@ -9,7 +9,7 @@ class Subscription < ApplicationRecord
   ].freeze
 
   belongs_to :user, optional: false
-  has_many :basket_subscriptions
+  has_many :basket_subscriptions, dependent: :destroy
   has_many :baskets, through: :basket_subscriptions
 
   validates :frequency, :start_date, presence: true

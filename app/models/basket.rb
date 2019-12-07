@@ -6,7 +6,7 @@ class Basket < ApplicationRecord
     CUSTOM_TYPE = "custom"
   ].freeze
 
-  has_many :basket_subscriptions
+  has_many :basket_subscriptions, dependent: :destroy
   has_many :subscriptions, through: :basket_subscriptions
 
   validates :basket_type, :price, presence: true
