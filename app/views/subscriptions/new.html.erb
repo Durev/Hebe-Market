@@ -1,0 +1,29 @@
+<%= form_with model: @subscription do |f| %>
+  <%= f.label :frequency %>
+  <%= f.select :frequency, Subscription::FREQUENCIES %>
+
+  <!-- start and end date -->
+
+
+
+<!-- maybe move in partial -->
+  <ul>
+    <%= f.fields_for :basket_subscriptions do |basket_subscriptions_form| %>
+
+      <li>
+        <%= basket_subscriptions_form.label :quantity %>
+        <%= basket_subscriptions_form.text_field :quantity, in: 1..10, step: 1 %>
+
+        <%= basket_subscriptions_form.label :basket %>
+
+        <!-- to move somewhere else. Presenter? -->
+        <!-- change price format -->
+        <!-- Same for frequencies translations in french -->
+        <% baskets_list = Basket.all.map{ |basket| [basket.price, basket.id] } %>
+        <%= basket_subscriptions_form.select :basket_id, baskets_list %>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= f.submit "Create" %>
+<% end %>
