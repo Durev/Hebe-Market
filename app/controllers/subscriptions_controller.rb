@@ -27,10 +27,10 @@ class SubscriptionsController < ApplicationController
     subscription = Subscription.new(create_params.merge(user_id: current_user.id))
 
     if subscription.save
+      session[:subscription] = nil
+
       # TODO: redirect to my subscriptions index
       redirect_to(root_path)
-
-      session[:subscription] = nil
     else
       render 'new'
     end
