@@ -1,0 +1,11 @@
+  <li class="basketSubscription-nestedFields">
+    <%= f.hidden_field :_destroy %>
+
+    <%= f.label :basket %>
+    <%= f.select :basket_id, BasketPresenter.to_collection %>
+
+    <%= f.label :quantity %>
+    <%= f.number_field :quantity, in: 1..10, step: 1 %>
+
+    <%= link_to "Remove", '#', class: "removeNestedFields" %>
+  </li>

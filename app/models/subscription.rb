@@ -9,8 +9,10 @@ class Subscription < ApplicationRecord
   ].freeze
 
   belongs_to :user, optional: false
-  has_many :basket_subscriptions, dependent: :destroy
+  has_many :basket_subscriptions, dependent: :destroy, inverse_of: :subscription
   has_many :baskets, through: :basket_subscriptions
+
+  accepts_nested_attributes_for :basket_subscriptions
 
   validates :frequency, :start_date, presence: true
   validates :frequency, inclusion: { in: FREQUENCIES }

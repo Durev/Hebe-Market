@@ -86,6 +86,9 @@ RSpec.configure do |config|
   # Set up Factory Bot
   config.include FactoryBot::Syntax::Methods
 
+  # Use the tags to include only what's needed
+  config.include Devise::Test::ControllerHelpers, type: :controller
+
   # Set up Database Cleaner
   # start by truncating all the tables but then use the faster transaction strategy the rest of the time.
   config.before(:suite) do
