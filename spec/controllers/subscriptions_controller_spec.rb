@@ -92,7 +92,7 @@ RSpec.describe SubscriptionsController, type: :controller do
         expect(request.session["subscription"].to_h).to match(
           "frequency" => "monthly",
           "basket_subscriptions_attributes" => {
-            "0" => { "basket_id" => "#{basket.id}", "quantity" => "10" }
+            "0" => { "basket_id" => basket.id.to_s, "quantity" => "10" }
           }
         )
       end
