@@ -2,9 +2,9 @@
 
 (function () {
   document.addEventListener("turbolinks:load", function(event) {
-    const addNestedFieldsLinks = document.querySelectorAll('.addNestedFields');
+    const addNestedFieldsLinks = document.querySelectorAll('.addNestedFields')
 
-    iterateLinks(addNestedFieldsLinks);
+    iterateLinks(addNestedFieldsLinks)
   });
 }());
 
