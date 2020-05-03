@@ -1,0 +1,10 @@
+  <li>
+    <%= f.label :basket %>
+
+    <!-- TODO: Put this in a presenter -->
+    <% baskets_list = Basket.all.map{ |basket| [basket.price, basket.id] } %>
+    <%= f.select :basket_id, baskets_list %>
+
+    <%= f.label :quantity %>
+    <%= f.number_field :quantity, in: 1..10, step: 1 %>
+  </li>

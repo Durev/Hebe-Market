@@ -2,12 +2,11 @@
 
 class SubscriptionsController < ApplicationController
   def new
-    # naming
-    form_params = session[:subscription]
+    prefilled_attributes = session[:subscription]
 
-    @subscription = Subscription.new(form_params)
+    @subscription = Subscription.new(prefilled_attributes)
 
-    @subscription.basket_subscriptions.build if form_params.blank?
+    @subscription.basket_subscriptions.build if prefilled_attributes.blank?
   end
 
   def create
@@ -28,7 +27,7 @@ class SubscriptionsController < ApplicationController
     subscription = Subscription.new(create_params.merge(user_id: current_user.id))
 
     if subscription.save
-      # redirect to my subscriptions index
+      # TODO: redirect to my subscriptions index
       redirect_to(root_path)
 
       session[:subscription] = nil
@@ -38,6 +37,6 @@ class SubscriptionsController < ApplicationController
   end
 
   def create_params
-    params.require(:subscription).permit(:frequency, basket_subscriptions_attributes: %i[quantity basket_id])
+    params.require(:subscription).permit(:frequency, :start_date, :end_date, basket_subscriptions_attributes: %i[quantity basket_id])
   end
 end
