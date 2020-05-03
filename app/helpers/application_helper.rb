@@ -11,6 +11,6 @@ module ApplicationHelper
       render(association.to_s.singularize + "_fields", f: builder)
     end
 
-    link_to(body, '#', class: "addNestedFields", data: { id: id, fields: fields.gsub("\n", "") })
+    link_to(body, '#', class: "addNestedFields", data: { id: id, fields: fields.delete("\n") })
   end
 end

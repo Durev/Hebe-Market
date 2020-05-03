@@ -44,8 +44,10 @@ RSpec.describe SubscriptionsController, type: :controller do
       it "creates a new subscription and basket_subscription" do
         expect {
           subject
-        }.to change(Subscription, :count).by(1)
-          .and change(BasketSubscription, :count).by(1)
+        }.to change(Subscription, :count)
+          .by(1)
+          .and change(BasketSubscription, :count)
+          .by(1)
 
         expect(Subscription.last).to have_attributes(
           user_id: user.id,
