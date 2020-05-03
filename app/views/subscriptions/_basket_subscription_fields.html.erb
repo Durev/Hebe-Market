@@ -1,12 +1,11 @@
   <li class="basketSubscription-nestedFields">
     <%= f.hidden_field :_destroy %>
-    <%= f.label :basket %>
 
-    <!-- TODO: Put this in a presenter -->
-    <% baskets_list = Basket.all.map{ |basket| [basket.price, basket.id] } %>
-    <%= f.select :basket_id, baskets_list %>
+    <%= f.label :basket %>
+    <%= f.select :basket_id, BasketPresenter.to_collection %>
 
     <%= f.label :quantity %>
     <%= f.number_field :quantity, in: 1..10, step: 1 %>
+
     <%= link_to "Remove", '#', class: "removeNestedFields" %>
   </li>
